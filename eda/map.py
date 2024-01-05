@@ -16,9 +16,9 @@ prop = fm.FontProperties(fname=fpath)
 
 def mapMatplotlib(merge_df):
     fig, ax = plt.subplots(ncols=2, sharey=True, figsize=(15, 10))
-    merge_df[merge_df['month'] == 3].plot(ax=ax[0], column="mean", cmap="Pastel1", legend=False, alpha=0.9,
+    merge_df[merge_df['month'] == 11].plot(ax=ax[0], column="mean", cmap="Pastel1", legend=False, alpha=0.9,
                                           edgecolor='gray')
-    merge_df[merge_df['month'] == 4].plot(ax=ax[1], column="mean", cmap="Pastel1", legend=False, alpha=0.9,
+    merge_df[merge_df['month'] == 12].plot(ax=ax[1], column="mean", cmap="Pastel1", legend=False, alpha=0.9,
                                           edgecolor='gray')
 
     patch_col = ax[0].collections[0]
@@ -31,8 +31,8 @@ def mapMatplotlib(merge_df):
         ax[1].annotate(row['SIG_KOR_NM'], xy=(row['lon'], row['lat']), xytext=(-7, 2),
                        textcoords="offset points", fontsize=8, color='black', fontproperties=prop)
 
-    ax[0].set_title('2023-3월 아파트 평균(만원)', fontproperties=prop)
-    ax[1].set_title('2023-4월 아파트 평균(만원)', fontproperties=prop)
+    ax[0].set_title('2023-11월 아파트 평균(만원)', fontproperties=prop)
+    ax[1].set_title('2023-12월 아파트 평균(만원)', fontproperties=prop)
     ax[0].set_axis_off()
     ax[1].set_axis_off()
 
@@ -43,7 +43,7 @@ def mapPlotly(merge_df):
     with open('eda/data/seoul.geojson', encoding='UTF-8') as f:
         data = json.load(f)
 
-    month = st.sidebar.radio("월", [3, 4])
+    month = st.sidebar.radio("월", [11, 12])
     result = merge_df[merge_df['month'] == month]
     mapbox_style = st.sidebar.selectbox('지도스타일', ["white-bg", "open-street-map", "carto-positron", "carto-darkmatter",
                                                   "stamen-terrain", "stamen-toner", "stamen-watercolor"])

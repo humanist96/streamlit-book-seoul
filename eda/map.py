@@ -77,7 +77,7 @@ def showMap(total_df):
     seoul_gpd = seoul_gpd.rename(columns={"SIG_CD": "SGG_CD"})
 
     total_df['month'] = total_df['DEAL_YMD'].dt.month
-    total_df = total_df[(total_df['HOUSE_TYPE'] == '아파트') & (total_df['month'].isin([3, 4]))]
+    total_df = total_df[(total_df['HOUSE_TYPE'] == '아파트') & (total_df['month'].isin([11, 12]))]
     total_df = total_df[['DEAL_YMD', 'month', 'SGG_CD', 'SGG_NM', 'OBJ_AMT', 'HOUSE_TYPE']].reset_index(drop=True)
 
     summary_df = total_df.groupby(['SGG_CD', 'month'])['OBJ_AMT'].agg(['mean', 'std', 'size']).reset_index()

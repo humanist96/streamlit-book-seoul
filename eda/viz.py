@@ -9,7 +9,7 @@ import numpy as np
 def meanChart(total_df, sgg_nm):
     st.markdown("## 가구별 평균 가격 추세 \n")
     filtered_df = total_df[total_df['SGG_NM'] == sgg_nm]
-    filtered_df = filtered_df[filtered_df['DEAL_YMD'].between("2023-11-01", "2023-12-30")]
+    filtered_df = filtered_df[filtered_df['DEAL_YMD'].between("2023-11-01", "2023-12-31")]
     result = filtered_df.groupby(['DEAL_YMD', 'HOUSE_TYPE'])['OBJ_AMT'].agg('mean').reset_index()
 
     df1 = result[result['HOUSE_TYPE'] == '아파트']  # 아파트
@@ -59,7 +59,7 @@ def meanChart(total_df, sgg_nm):
 def cntChart(total_df, sgg_nm):
     st.markdown("## 가구별 거래 건수 추세 \n")
     filtered_df = total_df[total_df['SGG_NM'] == sgg_nm]
-    filtered_df = filtered_df[filtered_df['DEAL_YMD'].between("2023-11-01", "2023-12-30")]
+    filtered_df = filtered_df[filtered_df['DEAL_YMD'].between("2023-03-01", "2023-04-30")]
     result = filtered_df.groupby(['DEAL_YMD', 'HOUSE_TYPE'])['OBJ_AMT'].count().reset_index().rename(columns = {'OBJ_AMT' : '거래건수'})
 
     df1 = result[result['HOUSE_TYPE'] == '아파트']  # 아파트
